@@ -1,3 +1,7 @@
+//import 'dart:html';
+
+//import 'dart:html';
+
 import 'package:control_gastos/graph_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,8 +23,22 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  PageController _controller;
+  int currentPage = 9;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        PageController(initialPage: currentPage, viewportFraction: 0.40);
+  }
+
   Widget _helperBottomAppBarAction(IconData icon) {
     return ClipOval(
       child: Material(
@@ -72,79 +90,70 @@ class HomeScreen extends StatelessWidget {
       )),
     );
   }
-}
 
-Widget _selector() {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: SizedBox.fromSize(
-      size: Size.fromHeight(15),
-      child: PageView(
-        children: [
-          Text('Enero',
+  Widget _helperpageItem(String name, position) {
+    var _alignment;
+    if (position == currentPage) {
+      _alignment = Alignment.center;
+    } else {
+      if (position < currentPage) {
+        _alignment = Alignment.centerLeft;
+      } else {
+        _alignment = Alignment.centerRight;
+      }
+    }
+    return Align(
+      alignment: _alignment,
+      child: position == currentPage
+          ? Text(
+              name,
               style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Febrero',
+                color: Colors.blueGrey,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
+            )
+          : Text(
+              name,
               style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Marzo',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Abril',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Mayo',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Junio',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Julio',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Agosto',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Septiembre',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Octubre',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Noviembre',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          Text('Diciembre',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-        ],
+                color: Colors.blueGrey.withOpacity(0.25),
+                fontSize: 16,
+              ),
+            ),
+    );
+  }
+
+  Widget _selector() {
+    // ->> PageView
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: SizedBox.fromSize(
+        size: Size.fromHeight(25),
+        child: PageView(
+          onPageChanged: (newPage) {
+            setState(() {
+              currentPage = newPage;
+            });
+          },
+          controller: _controller,
+          children: [
+            _helperpageItem('Enero', 0),
+            _helperpageItem('Febrero', 1),
+            _helperpageItem('Marzo', 2),
+            _helperpageItem('Abril', 3),
+            _helperpageItem('Mayo', 4),
+            _helperpageItem('Junio', 5),
+            _helperpageItem('Julio', 6),
+            _helperpageItem('Agosto', 7),
+            _helperpageItem('Septiembre', 8),
+            _helperpageItem('Octubre', 9),
+            _helperpageItem('Noviembre', 10),
+            _helperpageItem('Diciembre', 11),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 Widget _expenses() {
@@ -207,12 +216,14 @@ Widget _item(IconData icon, String nombre, int percent, double value) {
   );
 }
 
+int articuloItem = 1;
+
 Widget _list() {
   return Expanded(
       child: ListView.separated(
           itemCount: 15,
-          itemBuilder: (BuildContext contexto, int index) =>
-              _item(FontAwesomeIcons.shoppingCart, 'Hola mundo', 14, 2325.2),
+          itemBuilder: (BuildContext contexto, int index) => _item(
+              FontAwesomeIcons.shoppingCart, 'Nombre de articulo', 14, 2325.2),
           separatorBuilder: (BuildContext contexto, int index) {
             return Container(
               //Linea divisoria items
