@@ -1,7 +1,3 @@
-//import 'dart:html';
-
-//import 'dart:html';
-
 import 'package:control_gastos/graph_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -165,7 +161,7 @@ Widget _expenses() {
             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
       ),
       Text(
-        'Total expenses',
+        'Total',
         style: TextStyle(
             color: Colors.black, fontWeight: FontWeight.w400, fontSize: 16),
       ),

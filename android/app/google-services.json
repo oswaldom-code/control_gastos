@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "443272356626",
+    "firebase_url": "https://controlgastos-3b701.firebaseio.com",
+    "project_id": "controlgastos-3b701",
+    "storage_bucket": "controlgastos-3b701.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443272356626:android:18844e91474ecbbc3389cb",
+        "android_client_info": {
+          "package_name": "io.github.oswaldom_code"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443272356626-vdb1761c514tvct62qngr293koo02phg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA02vJf5kifB4dkvtZy10kIAYnqC_SRULY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443272356626-vdb1761c514tvct62qngr293koo02phg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
