@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         PageController(initialPage: currentPage, viewportFraction: 0.40);
   }
 
+  // ---> _helperBottomAppBarAction help to BottomAppBar
   Widget _helperBottomAppBarAction(IconData icon) {
     return ClipOval(
       child: Material(
@@ -47,10 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+  // --- Ende _helperBottomAppBarAction
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ---> Element: Bottom AppBar
       bottomNavigationBar: BottomAppBar(
         notchMargin: 10.0,
         shape: CircularNotchedRectangle(),
@@ -68,9 +71,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+      //- Element: BottomAppBar/floatingActionButton
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton:
           FloatingActionButton(child: Icon(Icons.add), onPressed: null),
+      // --- End Element: BottomAppBar
+
       body: SafeArea(
           child: Column(
         children: <Widget>[
@@ -176,6 +182,7 @@ Widget _graph() {
   );
 }
 
+// --- _item Widget, helper funtion to create items in ListView
 Widget _item(IconData icon, String nombre, int percent, double value) {
   return Container(
     height: 60,
@@ -190,7 +197,7 @@ Widget _item(IconData icon, String nombre, int percent, double value) {
             color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
       ),
       subtitle: Text(
-        '$percent% de expenses',
+        'percent% de expenses',
         style: TextStyle(color: Colors.blueGrey, fontSize: 14),
       ),
       trailing: Container(
@@ -200,7 +207,7 @@ Widget _item(IconData icon, String nombre, int percent, double value) {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
-            value.toString() + ' \$',
+            value.toString() + '\$',
             style: TextStyle(
                 color: Colors.blueAccent,
                 fontSize: 18,
@@ -211,9 +218,10 @@ Widget _item(IconData icon, String nombre, int percent, double value) {
     ),
   );
 }
+// End _item Widget
 
-int articuloItem = 1;
-
+/// ---> ListView
+/// Note: Implement p_item, a helper funtion to create itens in ListView
 Widget _list() {
   return Expanded(
       child: ListView.separated(
@@ -228,3 +236,5 @@ Widget _list() {
             );
           }));
 }
+
+/// End ListView
